@@ -2,7 +2,7 @@ import tensorflow as tf
 
 def bn_relu(a):
     a_mean, a_var = tf.nn.moments(a, axes=[0,1,2], keep_dims=True)
-    return (a - a_mean) / (a_var + 0.001)
+    return tf.nn.relu((a - a_mean) / (a_var + 0.001))
 
 class InceptionModule(object):
     def __init__(self, input, n_c, x, std):
